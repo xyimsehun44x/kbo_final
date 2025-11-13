@@ -1,0 +1,355 @@
+/* 사이드바 공통 */
+.sidebar {
+  width: 100%;
+  height: 110vh;
+  background-color: #1a1a1a;
+  color: white;
+  padding: 1rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+}
+
+/* 1. 상단 탭 */
+.sb-tabs {
+  position: sticky;
+  display: flex;
+  gap: 0.2rem;
+}
+.sb-tab {
+  flex-shrink: 0;
+  padding: 0.5rem 0.55rem;
+  background: none;
+  border: none;
+  color: #ccc;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.sb-tab.active {
+  color: #ff0000;
+  border-bottom: 2px solid #ff0000;
+}
+
+/* 2. 자동 업데이트 */
+.sb-auto-update {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 2rem;
+  height: 1rem;
+}
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #444;
+  border-radius: 1rem;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.2s;
+}
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 0.8rem;
+  width: 0.8rem;
+  left: 0.1rem;
+  bottom: 0.1rem;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.2s;
+}
+.toggle-switch input:checked + .slider {
+  background-color: #ff0000;
+}
+.toggle-switch input:checked + .slider::before {
+  transform: translateX(1rem);
+}
+.sb-auto-update .label {
+  font-size: 0.9rem;
+}
+.sb-auto-update .timestamp {
+  font-size: 0.8rem;
+  color: #888;
+}
+.actions {
+  margin-left: auto;
+  display: flex;
+  gap: 0.5rem;
+}
+.icon-btn {
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* 3. 이닝 탭 */
+.sb-innings {
+  display: flex;
+  gap: 0.25rem;
+  overflow-x: auto;
+}
+.inning-btn {
+  flex-shrink: 0;
+  padding: 0.4rem 0.7rem;
+  background-color: #ffffff00;
+  border: none;
+  color: #ccc;
+  cursor: pointer;
+  font-size: 0.9rem;
+  border-radius: 0.25rem;
+}
+.inning-btn.active {
+  background-color: #505050;
+  color: #ff0000;
+}
+
+/* 4. 현재 타석 정보 */
+/* ───────────────────────────────────────── */
+/* 현재 타석: 공 4/3/3 + 레이블 세 줄 구현 */
+/* ───────────────────────────────────────── */
+/* src/styles/sidebar.css */
+
+/* ── 현재 타석: 좌측/우측 분리 ── */
+.sb-current {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #2a2a2a;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+}
+
+/* 2) current-counts: flex-column + 우측 정렬 */
+.current-counts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;  /* 전체 블록을 오른쪽 끝에 붙임 */
+  gap: 0.5rem;
+}
+
+/* 3) count-row: dots와 레이블을 좌우로 분리 */
+.count-row {
+  display: flex;
+  justify-content: space-between; /* 좌측에 dots, 우측에 label */
+  align-items: center;
+  width: 100%;                     /* 라인 전체 너비 차지 */
+}
+
+/* 4) dots: left 정렬, label: right 정렬 (별도 조치 불필요) */
+.dots {
+  display: flex;
+  gap: 0.25rem;
+}
+.count-label {
+  margin: 0;
+  margin-left: 0.5rem;
+}
+
+/* 5) dot 스타일 (기존 유지) */
+.dot {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: #555;
+}
+.dot.filled.ball   { background-color: #0f0; }
+.dot.filled.strike { background-color: #ff0; }
+.dot.filled.out    { background-color: #f00; }
+
+
+/* ───────────────────────────────────────── */
+/* sb-charts 내 매치업 박스 스타일          */
+/* ───────────────────────────────────────── */
+/* ───────────────────────────────────────── */
+/* sb-charts 내 매치업 박스 스타일          */
+/* ───────────────────────────────────────── */
+.sb-charts {
+  display: flex;
+  flex-direction: column;
+  flex: 1;                /* 남은 세로 공간 채움 */
+  overflow-y: auto;       /* 세로 스크롤 허용 */
+  padding-right: 0.5rem;  /* 스크롤 바 공간 확보 */
+}
+
+/* 차트 행 간에도 간격 유지 */
+.chart-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.matchup-box {
+  background-color: #222;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.player-versus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* 선수 블록: 사진 + 이름 + 스탯 */
+.player-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* 선수 사진 */
+.player-photo {
+  width: 8vw;
+  height: 8vw;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #444;
+}
+
+.player-photo.active {
+  border: 3px solid #ff0000;
+}
+
+/* 선수 이름 */
+.player-name {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* 선수 스탯 */
+.player-stats {
+  font-size: 0.7rem;
+  color: #ccc;
+}
+
+/* VS 레이블 */
+.vs-label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+
+/* Pitcher 차트 4행 레이아웃 */
+
+/* 각 차트 행 마진 */
+.pitcher-charts .chart-row {
+  margin-bottom: 1rem;
+}
+
+/* 1행: 두 개 열 */
+.pitcher-charts .chart-row.two-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* 2~4행: 단일 열 full-width */
+.pitcher-charts .chart-row:not(.two-cols) .chart-placeholder {
+  width: 92%;
+}
+
+/* 차트 플레이스홀더 스타일 (이미 있겠지만 참고) */
+.chart-placeholder {
+  background-color: #2a2a2a;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: #ccc;
+  text-align: center;
+
+  min-height: 100px;
+}
+/* src/styles/sidebar.css */
+
+/* Heatmap grid container: flex column with spacing */
+.heatmap-grid {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  padding: 0.5rem;
+}
+
+/* Each row in the heatmap grid: flex row */
+.heatmap-row {
+  display: flex;
+  background-color: #ffffff;
+  width: fit-content;
+}
+
+/* Each cell in the heatmap grid: square cells */
+.heatmap-cell {
+  width: 0.7vw;
+  height: 0.7vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.5rem;
+  color: rgba(0, 0, 0);
+  border: 0.1px solid rgba(0,0,0, 0.1);
+  box-sizing: border-box;
+}
+
+/* Two-cols layout in chart rows */
+.chart-row.two-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Single-col chart rows */
+.chart-row {
+  margin-bottom: 1rem;
+}
+
+/* Placeholder styling */
+.chart-placeholder {
+  background-color: #2a2a2a;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: #ccc;
+  text-align: center;
+  min-height: 100px;
+}
+
+/* Chart content scrolling area */
+.chart-content {
+  overflow-y: auto;
+  max-height: 60vh;
+  padding-right: 0.5rem;
+}
+
+/* Optional: adjust scrollbar styles */
+.chart-content::-webkit-scrollbar {
+  width: 6px;
+}
+.chart-content::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+.speed-chart {
+    margin-top: 1rem;
+}
+.count-pitch {
+    height: 30vh;
+    margin-top: 1rem;
+}

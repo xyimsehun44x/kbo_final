@@ -1,0 +1,5 @@
+.kbo-image {
+    width: 100%;  /* player div의 너비에 맞추기 */
+    height: auto; /* 비율에 맞춰 높이 자동 조절 */
+    background-color: black; /* 배경색 설정 */;
+}

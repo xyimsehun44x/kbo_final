@@ -1,0 +1,204 @@
+/* src/styles/scoreboard.css */
+
+/* 헤더 높이(15vh)만큼 본문을 아래로 밀어냅니다. */
+.scoreboard-root {
+  color: white;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 메인 스코어보드 */
+.main-scoreboard {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1vh 2vw;            /* 30px 40px → 2vh 4vw */
+}
+
+/* 팀 정보 섹션 */
+.team-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+}
+
+.team-logo-big {
+  width: 4vw;                  /* 60px → 4vw */
+  height: 4vw;
+  margin-bottom: 0.5vh;        /* 8px → 0.5vh */
+}
+
+.team-name-big {
+  font-size: 2vh;              /* 20px → 2vh */
+  font-weight: bold;
+  margin-bottom: 0.4vh;        /* 6px → 0.4vh */
+}
+
+.pitcher {
+  font-size: 1.2vh;            /* 14px → 1.2vh */
+  color: #ccc;
+  margin-bottom: 0.8vh;        /* 10px → 0.8vh */
+}
+
+/* 점수 크게 */
+.score-big {
+  font-size: 4.5vh;              /* 50px → 5vh */
+  font-weight: bold;
+}
+
+
+.game-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* 텍스트가 밀려도 줄 바꿈이 자연스럽게 되도록 */
+  word-break: keep-all;
+  white-space: normal;
+}
+
+.status {
+  font-size: 1.6vh;            /* 16px → 1.6vh */
+  margin-bottom: 0.6vh;        /* 6px → 0.6vh */
+  color: #ff0000;
+  font-weight: bold;
+}
+
+.date {
+  font-size: 2vh;              /* 20px → 2vh */
+  margin-bottom: 1vh;
+}
+
+.score-line {
+  /* 너비 꽉 채우되, 내부 요소는 중앙 정렬 */
+  width: 100%;
+  display: flex;
+  justify-content: center; /* 중앙 정렬 */
+  align-items: center;
+  /* gap 을 줄여 중앙 간격 조절 */
+}
+.score-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* 각 항목 사이에 약간의 간격 */
+  gap: 0.5vh;
+  text-align: center; /* 내부 텍스트 중앙 정렬 */
+}
+
+.location {
+  font-size: 1.0vh;            /* 14px → 1.4vh */
+  color: #ccc;       /* 12px → 1vh */
+}
+
+.location img {         /* 5px → 0.5vh */
+  width: 3vh;                  /* 30px → 3vh */
+  height: 3vh;
+  vertical-align: middle;
+}
+
+/* 재생 버튼 */
+.play-summ {
+  /* score-center 의 column flow 에 포함되면서 아이콘 아래로 내려감 */
+  width: auto;
+  padding: 0.6vh 0.8vh;
+  margin-top: 0.3vh;  /* 아이콘과 약간 간격 */
+  border-radius: 1.5vh;
+  background-color: #ff0000;
+  color: white;
+  font-size: 1.2vh;
+  box-shadow: 0 0.2vh 0.6vh rgba(0, 0, 0, 0.5);
+  border: none;
+  cursor: pointer;
+}
+
+/* 이닝 테이블 */
+.inning-table-wrapper {
+  padding: 2vh 4vw;            /* 20px 40px → 2vh 4vw */
+  overflow-x: auto;
+}
+.inning-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 1.4vh;            /* 14px → 1.4vh */
+  color: white;
+  background-color: #000;
+}
+
+.inning-table th,
+.inning-table td {
+  border: none;
+  padding: 0.8vh 0.4vw;         /* 8px 4px → 0.8vh 0.4vw */
+  text-align: center;
+}
+
+.inning-table th:first-child,
+.inning-table td:first-child {
+  text-align: left;
+  padding-left: 1vw;           /* 10px → 1vw */
+}
+
+.inning-table td.empty {
+  color: #777;
+}
+
+/* 구분선 */
+.divider {
+  border: none;
+  height: 0.1vh;
+  background-color: #333;
+  margin: 3vh 0;
+}
+
+/* 하단 매치 카드 컨테이너 */
+.scoreboard-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: #1a1a1a;
+  padding: 2vh 4vw;            /* 20px 40px → 2vh 4vw */
+  gap: 2vw;                    /* 20px → 2vw */
+  overflow-x: auto;
+}
+
+/* 개별 매치 카드 */
+.match-card {
+  background-color: #2a2a2a;
+  padding: 1.6vh;              /* 16px → 1.6vh */
+  border-radius: 1.2vh;        /* 12px → 1.2vh */
+  color: white;
+  width: 11vw;                 /* 180px → 18vw */
+  flex-shrink: 0;
+  box-shadow: 0 0.2vh 0.6vh rgba(0, 0, 0, 0.5);
+}
+
+.match-status {
+  font-size: 1.4vh;            /* 14px → 1.4vh */
+  color: #aaa;
+  margin-bottom: 1.2vh;        /* 12px → 1.2vh */
+}
+
+.team-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.6vh;        /* 6px → 0.6vh */
+}
+
+.team-logo {
+  width: 2.4vh;                /* 24px → 2.4vh */
+  height: 2.4vh;
+  object-fit: contain;
+  margin-right: 0.6vh;         /* 6px → 0.6vh */
+}
+
+.team-name {
+  flex-grow: 1;
+  font-size: 1.6vh;            /* 16px → 1.6vh */
+}
+
+.team-score {
+  font-weight: bold;
+  font-size: 1.6vh;            /* 16px → 1.6vh */
+}

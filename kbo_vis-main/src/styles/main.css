@@ -1,0 +1,102 @@
+/* 전체 초기화 그대로 */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #000;
+  height: 100vh;
+}
+
+/* 1) Header: fixed + 두 가지 클래스 동시 적용 */
+.header,
+.tving-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* 높이를 vh 단위로 명시적으로 설정 */
+  height: 15vh;
+  background-color: #000;
+  color: white;
+  z-index: 1000;
+}
+
+/* 2) 본문: margin-top으로 헤더 높이(15vh)만큼 밀어내기 */
+.content {
+  margin-top: 15vh;          /* position: relative/top → margin-top 으로 교체 */
+  display: flex;
+  width: 100%;
+  /* 필요하다면 높이도 계산해 줄 수 있습니다 */
+  height: calc(100vh - 15vh);
+}
+
+/* 좌측, 우측 레이아웃 그대로 */
+.left-content {
+  width: 70%;
+  height: 100%;
+  background-color: #000;
+}
+
+.side-bar {
+  width: 30%;
+  height: 100%;
+}
+
+/* Player 컴포넌트 스타일 */
+.player {
+  width: 100%;
+  background-color: #000;
+  margin: 0;
+}
+.left-content {
+  transition: width 0.3s ease;
+}
+
+.left-content.with-sidebar {
+  width: 70%; /* 사이드바 열림 시 너비 */
+}
+
+.left-content.full-width {
+  width: 100%; /* 사이드바 닫힘 시 전체 너비 */
+}
+
+/* 사이드바 전환 애니메이션 */
+.sidebar {
+  transition: width 0.3s ease, opacity 0.3s ease;
+  width: 30%;         /* 기본 너비 */
+  opacity: 1;
+  overflow: hidden;
+}
+
+/* 사이드바가 닫힐 때 */
+.sidebar.collapsed {
+  width: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+/* styles/main.css */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-window {
+  background: white;
+  padding: 20px;
+  width: 90%;
+  max-width: 1000px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+}
+
+.close-btn {
+  float: right;
+  margin-bottom: 10px;
+}
